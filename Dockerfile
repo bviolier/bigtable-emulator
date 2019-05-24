@@ -1,6 +1,4 @@
-FROM golang:1.9-alpine3.6 as builder
-
-MAINTAINER Julien Letrouit "julien.letrouit@shopify.com"
+FROM 1.12.5-alpine3.9 as builder
 
 RUN apk update && apk upgrade && apk add git && \
     go get -u cloud.google.com/go/bigtable && \
@@ -16,7 +14,7 @@ RUN go build /go/bin/bigtable-emulator.go && \
     go test -v /go/bin/bigtable-emulator_test.go
 
 
-FROM alpine:3.6
+FROM alpine:3.9
 
 COPY --from=builder /go/bigtable-emulator /
 

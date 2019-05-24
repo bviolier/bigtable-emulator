@@ -1,3 +1,5 @@
+Used https://github.com/Shopify/bigtable-emulator as base for this.
+
 # Bigtable emulator Docker image
 
 This repository contains the Google Cloud Bigtable emulator, which is an in memory Go implementation of Bigtable allowing to create integration tests and a local development environment. Warning: this is not a production tool.
