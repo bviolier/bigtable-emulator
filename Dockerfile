@@ -1,8 +1,9 @@
 FROM golang:1.12.5-alpine3.9 as builder
 
-RUN apk update && apk upgrade && apk add git && \
+RUN apk update && apk upgrade && apk add git gcc libc-dev && \
     go get -u cloud.google.com/go/bigtable && \
-    go get -u github.com/stretchr/testify
+    go get -u github.com/stretchr/testify && \
+    go get -u github.com/google/btree
 
 ADD *.go /go/bin/
 

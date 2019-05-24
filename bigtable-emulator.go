@@ -26,7 +26,7 @@ func main() {
 	}
 	defer srv.Close()
 
-	fmt.Printf("Trying to create the following column families: %s", cfs)
+	fmt.Printf("Trying to create the following column families: %s\n", *cfs)
 
 	if err = createColumnFamilies(*cfs); err != nil {
 		fmt.Fprintf(os.Stderr, "error creating the column familiies: %v\n", err)
@@ -63,7 +63,7 @@ func createColumnFamilies(specifications string) error {
 		table := specificationElements[1]
 		columnFamily := specificationElements[2]
 
-		fmt.Printf("Creating Bigtable with table: %s, %s, %s", instance, table, columnFamily)
+		fmt.Printf("Creating Bigtable with table: %s, %s, %s\n", instance, table, columnFamily)
 
 		client, err := bigtable.NewAdminClient(ctx, "dev", instance, option.WithGRPCConn(conn))
 		if err != nil {
@@ -79,7 +79,7 @@ func createColumnFamilies(specifications string) error {
 			if err = client.CreateTable(ctx, table); err != nil {
 				return err
 			}
-			fmt.Printf("Created Bigtable table: %s", table)
+			fmt.Printf("Created Bigtable table: %s\n", table)
 		}
 
 		tableInfo, err := client.TableInfo(ctx, table)
